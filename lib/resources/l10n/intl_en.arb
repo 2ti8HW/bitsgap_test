@@ -1,0 +1,30 @@
+{
+  "@@locale": "en",
+  "emailFieldHint": "Email",
+  "passwordFieldHint": "Password",
+  "emailWrong": "Email is wrong",
+  "userNotFound": "User not found",
+  "userAlreadyExists": "User already exists",
+  "userNameFieldHint": "User name",
+  "userNameWrong": "User name is wrong",
+  "passwordEmpty": "Password empty",
+  "passwordWrong": "Password is wrong. Minimum length {length}",
+  "@passwordWrong": {
+    "description": "",
+    "placeholders": {
+      "length": {}
+    }
+  },
+  "buttonSignIn": "Login",
+  "buttonSignUp": "Sign-Up",
+  "buttonSignOut": "Logout",
+  "buttonForgot": "Forgot password?",
+  "forgotPasswordMessage": "Coming soon you can recover your password",
+  "welcome": "Welcome {user}",
+  "@welcome": {
+    "description": "",
+    "placeholders": {
+      "user": {}
+    }
+  }
+}
