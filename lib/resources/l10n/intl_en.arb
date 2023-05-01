@@ -8,6 +8,8 @@
   "userNameFieldHint": "User name",
   "userNameWrong": "User name is wrong",
   "passwordEmpty": "Password empty",
+  "emailEmpty" : "Email empty",
+  "userNameEmpty" : "User name empty",
   "passwordWrong": "Password is wrong. Minimum length {length}",
   "@passwordWrong": {
     "description": "",

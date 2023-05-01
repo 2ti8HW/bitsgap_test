@@ -21,25 +21,13 @@ abstract class _SignUpStore with Store {
 
   _SignUpStore(this._authStore, this._appRouter, this._appMessenger) {
     emailController.addListener(() {
-      if (emailController.text.isEmpty) {
-        emailWrong = null;
-      } else {
-        _onEmailEnter(emailController.text);
-      }
+      _onEmailEnter(emailController.text);
     });
     usernameController.addListener(() {
-      if (usernameController.text.isEmpty) {
-        userNameWrong = null;
-      } else {
-        _onUserNameEnter(usernameController.text);
-      }
+      _onUserNameEnter(usernameController.text);
     });
     passwordController.addListener(() {
-      if (passwordController.text.isEmpty) {
-        passwordWrong = null;
-      } else {
-        _onPasswordEnter(passwordController.text);
-      }
+      _onPasswordEnter(passwordController.text);
     });
   }
 
@@ -56,15 +44,30 @@ abstract class _SignUpStore with Store {
   String? passwordWrong;
 
   void _onEmailEnter(String value) {
+    if (value.isEmpty) {
+      emailWrong = null;
+      return;
+    }
+
     emailWrong = value.isValidEmail ? null : AppL10n.current.emailWrong;
   }
 
   void _onUserNameEnter(String value) {
+    if (value.isEmpty) {
+      userNameWrong = null;
+      return;
+    }
+
     userNameWrong =
         value.isValidUserName ? null : AppL10n.current.userNameWrong;
   }
 
   void _onPasswordEnter(String value) {
+    if (value.isEmpty) {
+      passwordWrong = null;
+      return;
+    }
+
     passwordWrong = value.isValidPassword
         ? null
         : AppL10n.current.passwordWrong(
@@ -80,9 +83,15 @@ abstract class _SignUpStore with Store {
     final userName = usernameController.text.trim();
     final password = passwordController.text.trim();
 
-    _onEmailEnter(email);
-    _onUserNameEnter(userName);
-    _onPasswordEnter(password);
+    if (email.isEmpty) {
+      emailWrong = AppL10n.current.emailEmpty;
+    }
+    if (userName.isEmpty) {
+      userNameWrong = AppL10n.current.userNameWrong;
+    }
+    if (password.isEmpty) {
+      passwordWrong = AppL10n.current.passwordEmpty;
+    }
 
     if (emailWrong != null || userNameWrong != null || passwordWrong != null) {
       return;

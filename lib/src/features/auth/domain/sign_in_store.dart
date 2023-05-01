@@ -20,18 +20,10 @@ abstract class _SignInStore with Store {
 
   _SignInStore(this._authStore, this._appRouter, this._appMessenger) {
     emailController.addListener(() {
-      if (emailController.text.isEmpty) {
-        emailWrong = null;
-      } else {
-        _onEmailEnter(emailController.text);
-      }
+      _onEmailEnter(emailController.text);
     });
     passwordController.addListener(() {
-      if (passwordController.text.isEmpty) {
-        passwordWrong = null;
-      } else {
-        _onPasswordEnter(passwordController.text);
-      }
+      _onPasswordEnter(passwordController.text);
     });
   }
 
@@ -45,10 +37,20 @@ abstract class _SignInStore with Store {
   String? passwordWrong;
 
   void _onEmailEnter(String value) {
+    if (value.isEmpty) {
+      emailWrong = null;
+      return;
+    }
+
     emailWrong = value.isValidEmail ? null : AppL10n.current.emailWrong;
   }
 
   void _onPasswordEnter(String value) {
+    if (value.isEmpty) {
+      passwordWrong = null;
+      return;
+    }
+
     final isValidPassword = value.trim().isNotEmpty;
 
     passwordWrong = isValidPassword ? null : AppL10n.current.passwordEmpty;
@@ -61,8 +63,12 @@ abstract class _SignInStore with Store {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    _onEmailEnter(email);
-    _onPasswordEnter(password);
+    if (email.isEmpty) {
+      emailWrong = AppL10n.current.emailEmpty;
+    }
+    if (password.isEmpty) {
+      passwordWrong = AppL10n.current.passwordEmpty;
+    }
 
     if (emailWrong != null || passwordWrong != null) return;
 
